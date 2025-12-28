@@ -21,41 +21,41 @@ To make "electron-vite" in Electron Forge work with ESM:
 
 1. In `package.js` do:
 ```ts
-  "main": ".vite/build/main.cjs",
-  "exports": "./.vite/build/main.cjs",
-  "type": "module",
+"main": ".vite/build/main.cjs",
+"exports": "./.vite/build/main.cjs",
+"type": "module",
 ```
 2. In `tsconfig.json` do:
 ```ts
-    "target": "ESNext",
-    //"module": "commonjs",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+"target": "ESNext",
+//"module": "commonjs",
+"module": "nodenext",
+"moduleResolution": "nodenext",
 ```
 3. In `vite.main.config.ts` do:
 ```ts
 build: {
-        target: "esnext",
-        rollupOptions: {
-            output: {
-                format: 'es',
-                entryFileNames: `[name].cjs`,
-                chunkFileNames: `[name].cjs`,
-            }
+    target: "esnext",
+    rollupOptions: {
+        output: {
+            format: 'es',
+            entryFileNames: `[name].cjs`,
+            chunkFileNames: `[name].cjs`,
         }
     }
+}
 ```
 4. In `vite.preload.config.ts` do:
 ```ts
-    build: {
-        target: "esnext",
-        rollupOptions: {
-            output: {
-                // format: 'es',
-                entryFileNames: `[name].js`,
-                chunkFileNames: `[name].js`,
-            }
+build: {
+    target: "esnext",
+    rollupOptions: {
+        output: {
+            // format: 'es',
+            entryFileNames: `[name].js`,
+            chunkFileNames: `[name].js`,
         }
     }
+}
 ```
 5. And, of course, add file extension in all relative imports across the whole project.
