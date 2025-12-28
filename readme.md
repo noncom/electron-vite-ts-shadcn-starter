@@ -20,21 +20,21 @@ If you find anything that can be improved, let me know.
 To make "electron-vite" in Electron Forge work with ESM:
 
 1. In `package.js` do:
-```
+```ts
   "main": ".vite/build/main.cjs",
   "exports": "./.vite/build/main.cjs",
   "type": "module",
 ```
 2. In `tsconfig.json` do:
-```
+```ts
     "target": "ESNext",
     //"module": "commonjs",
     "module": "nodenext",
     "moduleResolution": "nodenext",
 ```
 3. In `vite.main.config.ts` do:
-```
-	    build: {
+```ts
+build: {
         target: "esnext",
         rollupOptions: {
             output: {
@@ -46,7 +46,7 @@ To make "electron-vite" in Electron Forge work with ESM:
     }
 ```
 4. In `vite.preload.config.ts` do:
-```
+```ts
     build: {
         target: "esnext",
         rollupOptions: {
